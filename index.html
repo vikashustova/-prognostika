@@ -411,13 +411,6 @@ p{margin-top:0}
 }
 footer{padding-top:27px;color:var(--muted);text-align:center;font-size:11px}
 
-.mobile-cta{
-  display:none;position:fixed;z-index:20;left:10px;right:10px;bottom:10px;
-  padding:9px;background:rgba(250,248,245,.95);backdrop-filter:blur(12px);
-  border:1px solid var(--line);border-radius:999px;box-shadow:0 10px 35px rgba(48,45,42,.14)
-}
-.mobile-cta .button{width:100%;min-height:48px}
-
 @media(max-width:900px){
   .point-grid{grid-template-columns:repeat(4,1fr)}
 }
@@ -431,8 +424,7 @@ footer{padding-top:27px;color:var(--muted);text-align:center;font-size:11px}
   .point:first-child{grid-column:auto}
   .actions{flex-direction:column-reverse}
   body.result-open{padding-bottom:80px}
-  body.result-open .mobile-cta{display:block}
-}
+  body.result-open }
 @media(max-width:560px){
   .expert-card{align-items:center;padding:16px;gap:15px}.expert-photo{width:88px;height:88px;flex-basis:88px}.expert-name{font-size:15.5px}.expert-philosophy{font-size:12.6px}.forecast-visual{height:132px}
 }
@@ -443,7 +435,7 @@ footer{padding-top:27px;color:var(--muted);text-align:center;font-size:11px}
   .card{border-radius:23px}
 }
 @media print{
-  .button,.socials,.utility,.restart,.mobile-cta,.actions{display:none!important}
+  .button,.socials,.utility,.restart,
   .screen{display:none!important}
   #resultScreen{display:block!important}
   body{background:#fff}
@@ -905,22 +897,11 @@ h1,h2,h3,h4,
     grid-template-columns:1fr;
   }
 
-  .mobile-cta{
-    display:none;
-    left:max(10px,env(safe-area-inset-left));
-    right:max(10px,env(safe-area-inset-right));
-    bottom:max(10px,env(safe-area-inset-bottom));
-  }
-
   body.result-open{
     padding-bottom:calc(78px + env(safe-area-inset-bottom));
   }
 
-  body.result-open .mobile-cta{
-    display:block;
-  }
-
-  .loading-forecast-animation,
+  body.result-open .loading-forecast-animation,
   .forecast-visual{
     max-width:100%;
   }
@@ -1252,15 +1233,7 @@ h1,h2,h3,h4,
     font-size:12px;
   }
 
-  .mobile-cta{
-    padding:7px;
-    border-radius:20px;
   }
-
-  .mobile-cta .button{
-    min-height:46px;
-  }
-}
 
 /* Very narrow Android / older iPhone sizes */
 @media (max-width:360px){
@@ -1355,10 +1328,7 @@ h1,h2,h3,h4,
     padding-right:max(0px,env(safe-area-inset-right));
   }
 
-  .mobile-cta{
-    padding-bottom:max(7px,env(safe-area-inset-bottom));
   }
-}
 
 </style>
 </head>
@@ -1782,12 +1752,6 @@ h1,h2,h3,h4,
   <footer>© <span id="currentYear"></span> Виктория Шустова</footer>
 </div>
 
-<div class="mobile-cta">
-  <button id="mobileFullForecastBtn" class="button" type="button">
-    Подробнее про персональный прогноз
-  </button>
-</div>
-
 
 <script>
 
@@ -2174,12 +2138,7 @@ document.getElementById("fullForecastBtn").onclick=function(){openForecastOffer(
 document.getElementById("forecastContactBtn").onclick=function(){openContactChoice();return false;};
 document.getElementById("expressForecastBtn").onclick=function(){openExpressContactChoice();return false;};
 
-document.getElementById("mobileFullForecastBtn").onclick=function(){
-  var cta=document.querySelector(".cta");
-  if(cta){try{cta.scrollIntoView({behavior:"smooth",block:"start"});}catch(e){try{cta.scrollIntoView(true);}catch(e2){}}}
-  window.setTimeout(openForecastOffer,300);
-  return false;
-};
+
 
 document.getElementById("maxPersonalLink").onclick=function(){copyText(forecastMessage);};
 document.getElementById("tgPersonalLink").onclick=function(){copyText(forecastMessage);};
